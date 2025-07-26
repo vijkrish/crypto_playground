@@ -10,7 +10,7 @@ import hashlib
 import random
 from typing import Optional, Tuple
 
-# NIST P-256 curve parameters
+# NIST P-256 curve parameters (Taken from https://neuromancer.sk/std/nist/P-256)
 # p: The prime that defines the field
 # a, b: The curve parameters in the equation y^2 = x^3 + ax + b
 # G_x, G_y: The generator point coordinates
