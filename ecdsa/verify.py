@@ -15,8 +15,8 @@ The verification process follows these steps:
 
 from typing import Tuple
 
-# Import utility functions and constants from util.py
-from util import G_x, G_y, hash_message, mod_inverse, n, point_add, scalar_multiply
+# Import utility functions and constants from common.py
+from common import G_x, G_y, hash_message, mod_inverse, n, point_add, scalar_multiply
 
 
 def verify_signature(

@@ -15,7 +15,8 @@ import sys
 from typing import Optional
 
 # Import functions from our ECDSA implementation modules
-from sign import generate_keypair, sign_message
+from sign import sign_message
+from common import generate_keypair
 from verify import verify_signature
 
 

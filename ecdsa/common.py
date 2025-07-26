@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 """
-ECDSA Utility Functions
+ECDSA Common Functions and Constants
 
 This module contains common utility functions and constants used by both
 the ECDSA signature generation and verification algorithms.
 """
 
 import hashlib
+import random
 from typing import Optional, Tuple
 
 # NIST P-256 curve parameters
@@ -188,3 +189,25 @@ def hash_message(message: str) -> int:
 
     # Ensure the hash is in the range [0, n-1]
     return hash_int % n
+
+
+def generate_keypair() -> Tuple[int, Tuple[int, int]]:
+    """
+    Generate a new ECDSA key pair.
+
+    Returns:
+        A tuple (private_key, public_key) where public_key is a point (x, y)
+    """
+    # Generate a random private key d in the range [1, n-2]
+    private_key = random.randint(1, n - 2)
+
+    # Compute the public key as Q = dG
+    public_key = scalar_multiply(private_key, (G_x, G_y))
+
+    # In the extremely unlikely case that scalar_multiply returns None,
+    # try again with a different private key
+    while public_key is None:
+        private_key = random.randint(1, n - 2)
+        public_key = scalar_multiply(private_key, (G_x, G_y))
+
+    return private_key, public_key
